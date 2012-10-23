@@ -29,14 +29,13 @@ class Curl extends CI_Controller {
 		if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
 
 			$this->getTheInfo($_POST['text']);
-			redirect(base_url());
 
 		}elseif( $_SERVER['REQUEST_METHOD'] == 'GET' ){
 
 			//info et chargement de la vue pour le layout
 			$dataList['posts'] = $this->M_Curl->lister();
 			$dataLayout['titre'] = 'Le mur';
-			$dataLayout['vue'] = $this->load->view('curl', $dataList, TRUE);
+			$dataLayout['vue'] = $this->load->view('lister', $dataList, TRUE);
 
 			//chargement et infos page layout
 			
@@ -58,7 +57,7 @@ class Curl extends CI_Controller {
 			$pageContent = curl_exec($curl);
 
 			//Récuperation du html
-			$dom = new DomDocument();
+			$dom = new DOMDocument();
 			@$dom->loadHTML($pageContent);
 			$titre = $dom->getElementsByTagName("title");
 			$descriptions = $dom->getElementsByTagName("meta");
@@ -85,22 +84,17 @@ class Curl extends CI_Controller {
 			}
 
 			//recuperation des ou de l'image
-			/*preg_match_all('#<img[^\']*?src=\"([^\']*?)\"[^\']*?>#i', $pageContent, $imgs);
-			foreach ($imgs as $img) {
-				$image = $img[0];
-			}*/
-
-
+			for ($i=0; $i < $images->length ; $i++) { 
+			 	$mesImgs = $images->item($i);
+			 	$img[$i] = $mesImgs->getAttribute("src");
+			 } 
 
 			//ajout des donnée dans la variable contenant les info
 			$donnees['titre'] = $leTitre;
 			$donnees['site'] = $leSite;
 			$donnees['description'] = $laDescription;
-			$donnees['img'] = $image;
+			$donnees['img'] = $img;
 
-			//lancement de la fonction d'ajout
-
-			$this->M_Curl->ajouterSite($donnees);
 		}else{
 
 			$donnees['titre'] = 'auteur';
@@ -108,8 +102,10 @@ class Curl extends CI_Controller {
 			$donnees['description'] = $data;
 			$donnees['img'] = 'http://localhost:8888/monCurl/web/img/auteur.png';
 
-			$this->M_Curl->ajouterSite($donnees);
 		}
+
+		$dataLayout['vue'] = $this->load->view('choisir', $donnees, TRUE);
+		$this->load->view('layout', $dataLayout);
 	}
 }
 
