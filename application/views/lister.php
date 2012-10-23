@@ -1,5 +1,5 @@
 ﻿<section id="form">
-	<?= form_open() ?>
+	<?= form_open('curl/choix') ?>
 	<fieldset>
 		<?= form_textarea(array('id' => 'text', 'name' => 'text', 'rows' => '', 'cols' => '')) ?>
 	</fieldset>
