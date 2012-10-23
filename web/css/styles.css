@@ -203,6 +203,17 @@ fieldset:last-child{
 .post h2{
     margin: 0;
 }
+
+#choice label{
+    display: block;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.lesImages{
+    margin-bottom: 2em;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

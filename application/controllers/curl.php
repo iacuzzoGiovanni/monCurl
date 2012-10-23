@@ -28,7 +28,7 @@ class Curl extends CI_Controller {
 		
 		if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
 
-			$this->getTheInfo($_POST['text']);
+			$this->getTheInfo( $this->input->post('text') );
 
 		}elseif( $_SERVER['REQUEST_METHOD'] == 'GET' ){
 
@@ -40,7 +40,7 @@ class Curl extends CI_Controller {
 			//chargement et infos page layout
 			
 			$this->load->view('layout', $dataLayout);
-		}
+
 	}
 
 	public function getTheInfo($data){
