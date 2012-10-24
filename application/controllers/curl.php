@@ -34,6 +34,7 @@ class Curl extends CI_Controller {
 
 	public function choix(){
 		$this->load->helper('form');
+		
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 			$data = $this->input->post('text');
@@ -96,10 +97,72 @@ class Curl extends CI_Controller {
 
 			}
 		} 
-		
+
 		$dataLayout['titre'] = 'Choisis ton image';
 		$dataLayout['vue'] = $this->load->view('choix', $donnees, TRUE);
 		$this->load->view('layout', $dataLayout);
+	}
+
+	public function send(){
+		
+		$this->load->model('M_Curl');
+
+		if($_SERVER['REQUEST_METHOD'] == 'POST'){
+			
+			$datas['titre'] = $this->input->post('titre');
+			$datas['site'] = $this->input->post('site');
+			$datas['description'] = $this->input->post('description');
+			$datas['img'] = $this->input->post('imgChoice');
+			$this->M_Curl->ajouterSite($datas);
+		}
+		redirect('curl');
+	}
+
+	public function supprimer(){
+
+		$this->load->model('M_Curl');
+
+		$supp = $this->input->post('id');
+		
+		$this->M_Curl->delete($supp);
+
+		if(!$this->input->is_ajax_request()){
+		
+			redirect('curl');			
+		
+		}
+
+	}
+
+	public function modifier(){
+
+		$this->load->helper('form');
+		$this->load->model('M_Curl');
+
+    	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    		$data['post'] = $this->M_Curl->see($this->input->post('id'));
+
+    	}
+
+		$dataLayout['titre'] = 'Modifier le post';
+		$dataLayout['vue'] = $this->load->view('modifier', $data, TRUE);
+		$this->load->view('layout', $dataLayout);		
+	}
+
+	public function maj(){
+
+		$this->load->model('M_Curl');
+    		
+    	$data['titre'] = $this->input->post('titre');
+    	$data['url'] = $this->input->post('url');
+    	$data['description'] = $this->input->post('description');
+    	$data['img'] = $this->input->post('img');
+    	$data['id'] = $this->input->post('id');
+
+    	$this->M_Curl->update($data);
+    	redirect('curl');
+
 	}
 }
 

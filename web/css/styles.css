@@ -206,13 +206,20 @@ fieldset:last-child{
 
 #choice label{
     display: block;
-    width: 250px;
-    height: 250px;
     margin: 0 auto;
 }
 
-.lesImages{
-    margin-bottom: 2em;
+.choice img{
+    width: 200px;
+    line-height: 200px;
+    vertical-align: middle;
+}
+
+.choice{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    background-color: #fff;
 }
 /* ==========================================================================
    Helper classes
