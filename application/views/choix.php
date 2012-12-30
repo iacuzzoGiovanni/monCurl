@@ -12,24 +12,36 @@
 	echo form_open('curl/send',$data); 
 ?>	
 	<?= form_fieldset('',array('class' => 'lesImages')) ?>
-		<?php foreach ($img as $key => $image): ?>
+		<?php if(is_array($img)): ?>
+			<?php foreach ($img as $key => $image): ?>
+				<div class="choice">
+					<?= form_label('<img src="'.$image.'"alt="impossible d\'afficher l\'image"/>', 'i'.$key) ?>
+					<?php 
+						$data = array('id' => 'i'.$key, 'name' => 'imgChoice', 'value' => $image, 'class' => 'imgChoice');
+						echo form_radio($data);
+					?>
+				</div>
+			<?php endforeach; ?>
+		<?php else: ?>
 			<div class="choice">
-				<?= form_label('<img src="'.$image.'"alt="bo"/>', 'i'.$key) ?>
+				<?= form_label('<img src="'.$img.'"alt="impossible d\'afficher l\'image"/>', 'myPic') ?>
 				<?php 
-					$data = array('id' => 'i'.$key, 'name' => 'imgChoice', 'value' => $image, 'class' => 'imgChoice');
+					$data = array('id' => 'myPic', 'name' => 'imgChoice', 'value' => $img, 'class' => 'imgChoice', 'checked' => 'checked');
 					echo form_radio($data);
 				?>
 			</div>
-		<?php endforeach; ?>
+		<? endif; ?>
 	<?= form_fieldset_close() ?>
 	<?= form_fieldset() ?>
-		<?php 
-			echo form_button(array('id' => 'prec', 'content' => 'précédente', 'name' => 'prec'));
-			echo form_button(array('id' => 'suiv', 'content' => 'suivante', 'name' => 'prec'));  
-		?>
+		<?php if(is_array($img)): ?>
+			<?php 
+				echo form_button(array('id' => 'prec', 'content' => 'précédente', 'name' => 'prec'));
+				echo form_button(array('id' => 'suiv', 'content' => 'suivante', 'name' => 'prec'));  
+			?>
+		<? endif; ?>
 		<?= form_hidden(array('description' => $description)) ?>
-			<?= form_hidden(array('titre' => $titre)) ?>	
-			<?= form_hidden(array('site' => $site)) ?>
+		<?= form_hidden(array('titre' => $titre)) ?>	
+		<?= form_hidden(array('site' => $site)) ?>
 	<?= form_fieldset_close() ?>
 	<?= form_fieldset() ?>
 		<?php 

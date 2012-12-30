@@ -17,6 +17,14 @@ class Curl extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	public function __construct(){
+		parent::__construct();
+		if(!$this->session->userdata('logged_in')){
+			redirect('member');
+		}
+	}
+	
 	public function index()
 	{
 		$this->load->helper('form');
@@ -24,7 +32,8 @@ class Curl extends CI_Controller {
 		
 		//info et chargement de la vue pour le layout
 		$dataList['posts'] = $this->M_Curl->lister();
-		$dataLayout['titre'] = 'Le mur';
+		$dataLayout['titre'] = 'Share your links';
+		$dataLayout['pageCourante'] = 'accueil';
 		$dataLayout['vue'] = $this->load->view('lister', $dataList, TRUE);
 
 		//chargement et infos page layout
@@ -55,14 +64,20 @@ class Curl extends CI_Controller {
 				$titre = $dom->getElementsByTagName("title");
 				$descriptions = $dom->getElementsByTagName("meta");
 				$images = $dom->getElementsByTagName("img");
-				
+
+
 				curl_close($curl);
 
 				//recuperation du site
 				$leSite = $data;
 
 				//récuperation du title
-				$leTitre = $titre->item(0)->nodeValue;
+				$leTitre = $titre->item(0);
+				if(empty($leTitre)){
+					$leTitre = 'Aucun titre';
+				}else{
+					$leTitre = $titre->item(0)->nodeValue;
+				}
 
 
 				//recuperation de la description
@@ -78,9 +93,14 @@ class Curl extends CI_Controller {
 
 				//recuperation des ou de l'image
 				for ($i=0; $i < $images->length ; $i++) { 
-				 	$mesImgs = $images->item($i);
-				 	$img[$i] = $mesImgs->getAttribute("src");
-				} 
+					 	$mesImgs = $images->item($i);
+					 	$img[$i] = $mesImgs->getAttribute("src");
+					 	$img[$i] = $this->rel2abs($leSite, $img[$i]);
+					}
+
+				if(empty($img)){
+					$img = 'http://localhost/monCurl/web/img/noImg.png';
+				}
 
 				//ajout des donnée dans la variable contenant les info
 				$donnees['titre'] = $leTitre;
@@ -93,12 +113,13 @@ class Curl extends CI_Controller {
 				$donnees['titre'] = 'auteur';
 				$donnees['site'] = date("Y-m-d H:i:s");
 				$donnees['description'] = $data;
-				$donnees['img'] = 'http://localhost:8888/monCurl/web/img/auteur.png';
+				$donnees['img'] = 'http://localhost/monCurl/web/img/auteur.png';
 
 			}
 		} 
 
 		$dataLayout['titre'] = 'Choisis ton image';
+		$dataLayout['pageCourante'] = 'choix';
 		$dataLayout['vue'] = $this->load->view('choix', $donnees, TRUE);
 		$this->load->view('layout', $dataLayout);
 	}
@@ -146,6 +167,7 @@ class Curl extends CI_Controller {
     	}
 
 		$dataLayout['titre'] = 'Modifier le post';
+		$dataLayout['pageCourante'] = 'modifier';
 		$dataLayout['vue'] = $this->load->view('modifier', $data, TRUE);
 		$this->load->view('layout', $dataLayout);		
 	}
@@ -162,6 +184,25 @@ class Curl extends CI_Controller {
 
     	$this->M_Curl->update($data);
     	redirect('curl');
+
+	}
+
+	function rel2abs ($pageURL, $link){
+    
+	    if ( strstr($link, 'http://') !== false ){
+	    	return $link;
+	    }
+	       	   
+	    if ( $pageURL[strlen($pageURL) - 1] !== '/' ){
+	    	$pageURL .= '/';
+	    }
+
+	    /*if ( $link[0] == '/' ){
+	    	$link = substr($link, 1);
+	    }*/
+	        
+	    return $pageURL.$link;
+
 
 	}
 }

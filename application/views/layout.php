@@ -6,9 +6,12 @@
 		<link rel="stylesheet" href="<?= site_url().CSS_DIR2 ?>">
 		<link rel="stylesheet" href="<?= site_url().CSS_DIR ?>">
 	</head>
-	<body>
+	<body id="<?= $pageCourante ?>">
+		<h1>
+			<img src="http://localhost:8888/monCurl/web/img/titleImg.png" alt="logo représentant un petit trombone" />
+			<?= $titre ?>
+		</h1>
 		<div id="content">
-			<h1><?= $titre ?></h1>
 			<?= $vue ?>
 		</div>
 		<script src="<?= base_url() ?>web/js/jquery-1.8.2.js" type="text/javascript"></script>

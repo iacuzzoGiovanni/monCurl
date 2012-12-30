@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "curl";
+$route['default_controller'] = "member";
 $route['404_override'] = '';
 
 

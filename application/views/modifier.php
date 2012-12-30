@@ -9,7 +9,7 @@
 
 		<h2>
 			Description du site&nbsp;:
-			<?= form_input(array('name' => 'description', 'value' => $post->description)) ?>
+			<?= form_textarea(array('name' => 'description', 'value' => $post->description)) ?>
 		</h2>
 		<img src="<?= $post->img ?>" alt="#" />
 		<?= form_hidden(array('img' => $post->img)) ?>
