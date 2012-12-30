@@ -8,9 +8,13 @@
 			$dataLayout['id_body'] = 'form';
 			$dataLayout['titre'] = 'connexion';
 			$dataLayout['pageCourante'] = 'connexion';
-			$dataLayout['vue'] = $this->load->view('member_login', array(), TRUE);
+			$dataLayout['vue'] = $this->load->view('member_action', array(), TRUE);
 
 			$this->load->view('layout', $dataLayout);
+		}
+
+		public function signIn(){
+
 		}
 
 		public function login(){
@@ -20,12 +24,18 @@
 							  'mdp' => $mdp);
 			$this->load->model('M_Member');
 			$res = $this->M_Member->verifier($dataUser);
-			
-			if($res){
-				$this->session->set_userdata('logged_in', TRUE);
+			if($res['exist']){
+				$user = array(
+                   'id'  => $res['data']->user_id,
+                   'logged_in' => TRUE
+               	);
+				$this->session->set_userdata($user);
 				redirect('curl/index');
 			}else{
-				$this->session->set_userdata('logged_in', FALSE);
+				$user = array(
+                   'logged_in' => FALSE
+               	);
+				$this->session->set_userdata($user);
 				redirect('member/index');
 			}
 		}

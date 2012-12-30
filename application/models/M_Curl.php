@@ -7,6 +7,7 @@
 		{
 			$this->db->select('titre as titre, url as site, description as description, img as image, id as id');
 			$this->db->from('posts');
+			$this->db->where('user_id', $this->session->userdata['id']);
 			$query = $this->db->get();
 			return $query->result();
 		}

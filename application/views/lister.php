@@ -1,4 +1,5 @@
-﻿<section id="form">
+﻿<?= var_dump($this->session->userdata['id']); ?>
+<section id="form">
 	<?= form_open('curl/choix') ?>
 	<fieldset>
 		<?= form_textarea(array('id' => 'text', 'name' => 'text', 'rows' => '', 'cols' => '')) ?>
