@@ -14,7 +14,9 @@
 		}
 
 		public function signIn(){
-
+			if($this->input->post('email1') === $this->input->post('email2'))
+			$email = $this->input->post('email');
+			$mdp = $this->input->post('mdp');
 		}
 
 		public function login(){
