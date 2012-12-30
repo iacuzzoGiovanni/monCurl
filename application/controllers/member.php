@@ -24,7 +24,23 @@
 
 			$this->load->model('M_Member');
 			$this->M_Member->inscrire(array('email' => $email, 'mdp' => $mdp));
-			redirect('member/index');
+
+			
+			$res = $this->M_Member->verifier(array('email' => $email, 'mdp' => $mdp));
+			if($res['exist']){
+				$user = array(
+                   'id'  => $res['data']->user_id,
+                   'logged_in' => TRUE
+               	);
+				$this->session->set_userdata($user);
+				redirect('curl/index');
+			}else{
+				$user = array(
+                   'logged_in' => FALSE
+               	);
+				$this->session->set_userdata($user);
+				redirect('member/index');
+			}
 			
 		}
 
