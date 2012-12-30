@@ -14,9 +14,18 @@
 		}
 
 		public function signIn(){
-			if($this->input->post('email1') === $this->input->post('email2'))
-			$email = $this->input->post('email');
-			$mdp = $this->input->post('mdp');
+			if($this->input->post('email1') === $this->input->post('email2')){
+				$email = $this->input->post('email1');
+			}
+
+			if($this->input->post('mdp1') === $this->input->post('mdp2')){
+				$mdp = $this->input->post('mdp1');
+			}	
+
+			$this->load->model('M_Member');
+			$this->M_Member->inscrire(array('email' => $email, 'mdp' => $mdp));
+			redirect('member/index');
+			
 		}
 
 		public function login(){
