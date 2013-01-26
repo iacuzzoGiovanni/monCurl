@@ -1,7 +1,13 @@
 <?php
 
 	class Member extends CI_Controller{
-		
+
+		public function __construct(){
+			parent::__construct();
+			if($this->session->userdata('logged_in')){
+				redirect('curl/index');
+			}
+		}
 
 		public function index(){
 			$this->load->helper('form');
@@ -23,25 +29,27 @@
 			}	
 
 			$this->load->model('M_Member');
-			$this->M_Member->inscrire(array('email' => $email, 'mdp' => $mdp));
 
-			
-			$res = $this->M_Member->verifier(array('email' => $email, 'mdp' => $mdp));
-			if($res['exist']){
-				$user = array(
-                   'id'  => $res['data']->user_id,
-                   'logged_in' => TRUE
-               	);
-				$this->session->set_userdata($user);
-				redirect('curl/index');
+			if(empty($email) || empty($mdp)){
+				//rien
 			}else{
-				$user = array(
-                   'logged_in' => FALSE
-               	);
-				$this->session->set_userdata($user);
-				redirect('member/index');
-			}
-			
+				$this->M_Member->inscrire(array('email' => $email, 'mdp' => $mdp));
+				$res = $this->M_Member->verifier(array('email' => $email, 'mdp' => $mdp));
+				if($res['exist']){
+					$user = array(
+	                   'id'  => $res['data']->user_id,
+	                   'logged_in' => TRUE
+	               	);
+					$this->session->set_userdata($user);
+					redirect('curl/index');
+				}else{
+					$user = array(
+	                   'logged_in' => FALSE
+	               	);
+					$this->session->set_userdata($user);
+					redirect('member/index');
+				}
+			}	
 		}
 
 		public function login(){
@@ -65,10 +73,5 @@
 				$this->session->set_userdata($user);
 				redirect('member/index');
 			}
-		}
-
-		public function disconnect(){
-			$this->session->unset_userdata('logged_in');
-			redirect('member/index');
 		}
 	}

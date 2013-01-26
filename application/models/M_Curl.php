@@ -14,7 +14,8 @@
 
 		public function ajouterSite($data)
 		{
-			$donnes = array('titre' => $data['titre'], 
+			$donnes = array('user_id' => $this->session->userdata['id'],
+							'titre' => $data['titre'], 
 							'url' => $data['site'], 
 							'description' => $data['description'], 
 							'img' => $data['img']);

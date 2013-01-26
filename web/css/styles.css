@@ -280,7 +280,7 @@ h2{
     margin-top: 2em;
 }
 
-#choix button, #envoyer{
+#choix button, #connect, #register{
     background: #333; /* Old browsers */
     background: -moz-linear-gradient(top,  #333 0%, #000000 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333), color-stop(100%,#000000)); /* Chrome,Safari4+ */
@@ -365,6 +365,37 @@ h2{
     width: auto;
     border: none;
     box-shadow: none;
+}
+
+#connexion{
+    position: relative;
+}
+
+#connexion input{
+    display: block;
+}
+
+#loadingSignIn{
+    background-color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    opacity: .8;
+    width: 100%;
+    display: none;
+}
+
+#loadingSignIn p{
+    position: absolute;
+    top: 14em;
+    width: 100%;
+}
+
+.errors{
+    color: red;
+}
+span.errors{
+    display: block;
 }
 /* ==========================================================================
    Helper classes

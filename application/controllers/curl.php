@@ -21,7 +21,7 @@ class Curl extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		if(!$this->session->userdata('logged_in')){
-			redirect('member');
+			redirect('member/index');
 		}
 	}
 	
@@ -204,6 +204,11 @@ class Curl extends CI_Controller {
 	    return $pageURL.$link;
 
 
+	}
+
+	public function disconnect(){
+		$this->session->unset_userdata('logged_in');
+		redirect('member/index');
 	}
 }
 

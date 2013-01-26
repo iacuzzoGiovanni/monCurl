@@ -10,6 +10,7 @@
 		<h1>
 			<img src="http://localhost:8888/monCurl/web/img/titleImg.png" alt="logo représentant un petit trombone" />
 			<?= $titre ?>
+			<a href="<?php base_url("curl/disconnect"); ?>">se deconnecter</a>
 		</h1>
 		<div id="content">
 			<?= $vue ?>

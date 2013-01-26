@@ -2,7 +2,8 @@
 	<h2>Pas encore inscrit&nbsp;?</h2>
 	<?= form_open('member/signIn', 
 				  array(
-				  	'method' => 'post'
+				  	'method' => 'post',
+				  	'id' => 'connexion'
 				  		)); ?>
 		<?=  form_fieldset() ?>
 			
@@ -18,8 +19,13 @@
 			<?= form_label('confirmation du mot de passe&nbsp;:', 'mdpI2') ?>
 			<?= form_password(array('id' => 'mdpI2', 'value' => '', 'name' => 'mdp2')) ?>
 			
-			<?= form_submit(array('id' => 'envoyer', 'value' => 'se connecter', 'name' => 'envoyer')) ?>
-
+			<?= form_submit(array('id' => 'register', 'value' => 'se connecter', 'name' => 'register')) ?>
+			<div id="loadingSignIn">
+				<img src="<?= base_url() ?>/web/img/loading.gif" alt="ajaxLoader" />
+				<p>
+					En cours...
+				</p>
+			</div>
 		<?= form_fieldset_close() ?>
 	<?= form_close() ?>
 </section>
@@ -38,7 +44,7 @@
 			<?= form_label('pass&nbsp;:', 'mdpC') ?>
 			<?= form_password(array('id' => 'mdpC', 'value' => '', 'name' => 'mdp')) ?>
 			
-			<?= form_submit(array('id' => 'envoyer', 'value' => 'se connecter', 'name' => 'envoyer')) ?>
+			<?= form_submit(array('id' => 'connect', 'value' => 'se connecter', 'name' => 'connect')) ?>
 
 		<?= form_fieldset_close() ?>
 
