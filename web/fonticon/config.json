@@ -1,0 +1,47 @@
+{
+  "name": "",
+  "glyphs": [
+    {
+      "search": [
+        "contact",
+        "card",
+        "vcard"
+      ],
+      "code": 59170,
+      "uid": "457c8e2b305e7af74c1be4f07a01ca92",
+      "css": "vcard",
+      "orig_css": "vcard",
+      "orig_code": 59170,
+      "src": "entypo",
+      "from": 59170
+    },
+    {
+      "search": [
+        "login",
+        "signin",
+        "enter"
+      ],
+      "code": 59200,
+      "from": 59200,
+      "uid": "3a00327e61b997b58518bd43ed83c3df",
+      "css": "login",
+      "orig_css": "login",
+      "orig_code": 59200,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "logout",
+        "signout",
+        "exit"
+      ],
+      "code": 59201,
+      "from": 59201,
+      "uid": "0d20938846444af8deb1920dc85a29fb",
+      "css": "logout",
+      "orig_css": "logout",
+      "orig_code": 59201,
+      "src": "fontawesome"
+    }
+  ]
+}

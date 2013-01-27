@@ -32,7 +32,7 @@ class Curl extends CI_Controller {
 		
 		//info et chargement de la vue pour le layout
 		$dataList['posts'] = $this->M_Curl->lister();
-		$dataLayout['titre'] = 'Share your links';
+		$dataLayout['titre'] = 'Link Manager';
 		$dataLayout['pageCourante'] = 'accueil';
 		$dataLayout['vue'] = $this->load->view('lister', $dataList, TRUE);
 

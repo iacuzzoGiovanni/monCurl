@@ -2,16 +2,16 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title><?= $titre ?></title>
+		<title>link manager <?= $titre ?></title>
 		<link rel="stylesheet" href="<?= site_url().CSS_DIR2 ?>">
 		<link rel="stylesheet" href="<?= site_url().CSS_DIR ?>">
 	</head>
 	<body id="<?= $pageCourante ?>">
-		<h1>
-			<img src="http://localhost:8888/monCurl/web/img/titleImg.png" alt="logo représentant un petit trombone" />
-			<?= $titre ?>
-			<a href="<?php base_url("curl/disconnect"); ?>">se deconnecter</a>
-		</h1>
+		<header>
+			<h1>
+				<img width="215" height="38.5" src="http://localhost:8888/monCurl/web/img/titleImg.png" alt="link Manager" />
+			</h1>
+		</header>
 		<div id="content">
 			<?= $vue ?>
 		</div>

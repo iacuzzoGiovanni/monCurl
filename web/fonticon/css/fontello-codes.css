@@ -1,0 +1,4 @@
+
+.icon-vcard:before { content: '\e722'; } /* '' */
+.icon-login:before { content: '\e740'; } /* '' */
+.icon-logout:before { content: '\e741'; } /* '' */
