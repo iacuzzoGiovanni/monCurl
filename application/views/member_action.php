@@ -24,7 +24,7 @@
 					<?= form_label('confirmation du mot de passe&nbsp;:', 'mdpI2') ?>
 					<?= form_password(array('id' => 'mdpI2', 'value' => '', 'name' => 'mdp2')) ?>
 					
-					<?= form_submit(array('id' => 'register', 'value' => 'se connecter', 'name' => 'register')) ?>
+					<?= form_submit(array('id' => 'register', 'value' => 's\'inscrire', 'name' => 'register')) ?>
 					<div id="loadingSignIn">
 						<img width="100" height="100" src="<?= base_url() ?>/web/img/loading.gif" alt="ajaxLoader" />
 						<p>

@@ -124,7 +124,7 @@ header h1{
     margin: 0;
 }
 
-header h1, .membersAction>div{
+header h1, .membersAction>div, .linkSearch, .post, .choicePicture> div, #choice{
     margin: 0 auto;
     max-width: 960px;
 }
@@ -141,8 +141,10 @@ textarea{
     padding: 1em;
 }
 
-#accueil img{
+.post img{
     border: 5px solid #fff;
+    -webkit-box-shadow:  0px 3px 8px 0px rgba(0, 0, 0, .5);
+    box-shadow:  0px 3px 8px 0px rgba(0, 0, 0, .5);
 }
 
 .img img{
@@ -159,6 +161,10 @@ textarea{
     float: left;
     width: 75%;
     position: relative;
+}
+
+.infos h2{
+    width: 100%;
 }
 
 h2{
@@ -178,17 +184,17 @@ h2{
     margin-bottom: 2em;
 }
 
-.post{
-    overflow: hidden;
-    position: relative;
-    margin-top: 1em;
-    border-bottom: 1px solid #C5C5C5;
-    -webkit-box-shadow: 0px 1px 0px 0px #fff;
-    box-shadow: 0px 1px 0px 0px #fff;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 1em;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #B0B0B0;  
-    box-shadow: inset 0px 1px 0px 0px #B0B0B0;
+form.infos span{
+    display: block;
+    top: 0;
+    margin: 1em 0;
+}
+
+form.infos textarea{
+    width: 100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
 }
 
 .post form{
@@ -199,28 +205,6 @@ h2{
     position: absolute;
     right: 0;
 }  
-
-.supprimer, .modifier{
-    background: none;
-    border: none;
-    font-weight: bold;
-    padding: 0.5em;
-}
-
-.supprimer:hover, .modifier:hover{
-    background: #333; /* Old browsers */
-    background: -moz-linear-gradient(top,  #333 0%, #000000 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333), color-stop(100%,#000000)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #333 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #333 0%,#000000 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #333 0%,#000000 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #333 0%,#000000 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
-    color: #fff;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #999, 0px 1px 0px 0px #aaa;
-    box-shadow: inset 0px 1px 0px 0px #999, 0px 1px 0px 0px #aaa;
-    border: 1px solid #000;
-}
 
 #choix #content{
     margin-top: 2em;
@@ -247,11 +231,23 @@ h2{
     overflow: hidden;
     margin: 0 auto;
     margin-bottom: 1em;
-    border: 10px solid #000;
+    border: 5px solid #fff;
+    -webkit-box-shadow:  0px 3px 8px 0px rgba(0, 0, 0, .5);
+    box-shadow:  0px 3px 8px 0px rgba(0, 0, 0, .5);
 }
 
 .lesImages img{
     width: 100%;
+}
+
+.lesImages{
+    float: left;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
+#choice{
+    overflow: hidden;
 }
 
 .choice{
@@ -269,6 +265,7 @@ h2{
 
 #choice fieldset+fieldset{
     text-align: center;
+    margin-top: 2em;
 }
 
 #modifier h2{
@@ -437,7 +434,7 @@ span.errors{
     overflow: hidden;
 }
 
-#register, #connect{
+#register, #connect, .modifier, .supprimer, .saveChange, #partager, #suiv, #prec, #choix #envoyer{
     font: 16px/1.5 'Open Sans', sans-serif;
     font-weight: 700;
     display: block;
@@ -458,6 +455,50 @@ span.errors{
     color: #fff;
     width: 50%;
 }
+
+.modifier, .supprimer, .saveChange, #partager, #suiv, #prec, #choix #envoyer{
+    width: 100%;
+    padding: 0em 1em;
+}
+
+.saveChange, #partager, #suiv{
+    margin-top: 1em !important;
+}
+
+.linkSearch textarea{
+    width: 100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    padding: 0.5em;
+}
+
+#form{
+    background-image: url("http://subtlepatterns.com/patterns/wood_pattern.png");
+    padding: 4em;
+    position: relative;
+    top: -1.45em;
+}
+
+.post{
+    overflow: hidden;
+    position: relative;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.postContainer, .choicePicture{
+    background-color: #eee;
+}
+
+#choix #content{
+    margin-top: 0;
+}
+
+header h1 a{
+    font-size: 0.5em;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -565,9 +606,81 @@ span.errors{
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
+@media only screen and (max-width: 959px){
+    .choicePicture{
+        padding: 1em;
+    }
+}/*pour ecran en deca de 959px*/
+
+@media only screen and (min-width: 768px) and (max-width: 959px){
+
+}/*pour tablet mode paysage*/
+
+@media only screen and (max-width: 767px){
+    .membersInformation input{
+        width: 100%;
+    }
+
+    .membersAction > div{
+        padding: 0 1em;
+    }
+
+    .icon-vcard, .icon-login {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .membersInformation {
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    #register, #connect, .modifier, .supprimer, .saveChange, #partager, #suiv, #prec, #choix #envoyer {
+        width: 100%;
+    }
+
+    .membersInformation h2{
+        width: 100%;
+        text-align: center;
+    }
+
+    header h1{
+        text-align: center;
+    }
+
+    #form{
+        padding: 1em;
+    }
+
+    .supp{
+        position: static;
+    }
+}/*pour tablet mode portrait*/
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+
+}/*telephone mode paysage*/
+
+@media only screen and (max-width: 480px){
+    header h1 a{
+        display: block;
+        font-size: 0.5em;
+    }
+
+    .img {
+        margin-right: 10%;
+    }
+
+    .infos{
+        width: 70%;
+    }
+
+    .lesImages{
+        float: none;
+    }
+}/*telephone mode portrait*/
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 144dpi) {
