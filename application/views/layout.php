@@ -9,10 +9,10 @@
 	<body id="<?= $pageCourante ?>">
 		<header>
 			<h1>
-				<a href="<?= base_url() ?>" title="aller vers la page d'accueil"><img width="215" height="38.5" src="http://localhost:8888/monCurl/web/img/titleImg.png" alt="link Manager" /></a>
+				<a href="<?= base_url() ?>" title="aller vers la page d'accueil"><img width="215" height="38.5" src="<?= base_url() ?>web/img/titleImg.png" alt="link Manager" /></a>
 				<?php 
 					if($this->session->userdata('logged_in')){
-						echo '<a href="'.base_url().'/curl/disconnect" title="se déconnecter">se déconnecter</a>';
+						echo '<a class="icon-logout" href="'.base_url().'curl/disconnect" title="se déconnecter"><span>se déconnecter</span></a>';
 					}
 				?>
 			</h1>

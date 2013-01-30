@@ -3,6 +3,20 @@
   "glyphs": [
     {
       "search": [
+        "settings",
+        "cog",
+        "gear"
+      ],
+      "code": 9881,
+      "from": 9881,
+      "uid": "e99461abfef3923546da8d745372c995",
+      "css": "cog",
+      "orig_css": "cog",
+      "orig_code": 9881,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
         "contact",
         "card",
         "vcard"

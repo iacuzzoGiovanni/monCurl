@@ -15,7 +15,7 @@
 	var derouleSupp = function(e){
 		e.preventDefault();
 		
-		var info = $(this).parents('.post');
+		var info = $(this).parents('.postContainer');
 		
 		$(this).parents('.post').slideUp( 'slow', function() {
 			id = $(this).attr("id");
@@ -79,6 +79,7 @@
 
 	var signIn = function(e){
 		e.preventDefault();
+		
 		var infos = $(this);
 		var bool = true;
 
@@ -88,14 +89,6 @@
 			bool = false;
 		}else{
 			$(".emailI").remove();
-		}
-
-		if(infos.parents('form').find("#emailI2").val() === "" || !checkEmail( infos.parents('form').find("#emailI2").val() ) ){
-			$(".emailI2").remove();
-			infos.parents('form').find("#emailI2").after('<span class="emailI2 errors">Ce champ ne peut pas être vide et doit contenir un e-mail</span>');
-			bool = false;
-		}else{
-			$(".emailI2").remove();
 		}
 
 		if(infos.parents('form').find("#mdpI").val() === ""){
@@ -114,8 +107,6 @@
 			$(".mdpI2").remove();
 		}
 
-
-
 		if(bool){
 			$("#loadingSignIn").css("display", "block");
 			$.ajax(
@@ -124,7 +115,6 @@
 					type:"post",
 					data:{
 						email1:infos.parents('form').find("#emailI").val(),
-						email2:infos.parents('form').find("#emailI2").val(),
 						mdp1:infos.parents('form').find("#mdpI").val(),
 						mdp2:infos.parents('form').find("#mdpI2").val()
 					},
@@ -151,6 +141,28 @@
 		}
 	};
 
+	var checkUrl = function(e){
+		e.preventDefault();
+		var $this = $(this);
+		$.ajax(
+			{
+				url:$this.parents('form').attr('action'),
+				type:"post",
+				data:{
+					text:$this.parents('form').find("textarea").val()
+				},
+				success:function(e){
+					if(e){
+						$this.parents("form").submit();
+					}else{
+						$this.parents("fieldset").find(".urlKo").remove();
+						$this.parents("fieldset").append('<span class="urlKo">L\'url que vous avez entrée n\'est pas valide</span>');
+					}
+				}
+			}
+		)
+	};
+
 	$(function(){
 		$("#choice .choice").hide();
 		$("#choice input").hide();
@@ -162,6 +174,7 @@
 		$(".post").delegate(".modifier", "click", modifier);
 		$(".post").delegate(".saveChange", "click", enregistrerChange);
 		$("#connexion").delegate("#register", "click", signIn);
+		$("#partager").on("click", checkUrl);
 	});
 
 }( jQuery ) );

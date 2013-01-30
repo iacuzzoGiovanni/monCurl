@@ -1,7 +1,7 @@
 ﻿<div id="form">
 	<?= form_open('curl/choix', array("class" => "linkSearch")) ?>
 		<?=  form_fieldset() ?>
-			<?= form_textarea(array('id' => 'text', 'name' => 'text', 'rows' => '', 'cols' => '', 'placeholder' => 'vous pouvez mettre un lien ou alors un petit commentaire a retenir')) ?>
+			<?= form_textarea(array('id' => 'text', 'name' => 'text', 'placeholder' => 'placer votre lien ici :-)')) ?>
 			<?= form_submit(array('id' => 'partager', 'value' => 'partager', 'name' => 'partager')) ?>
 		<?= form_fieldset_close() ?>
 	<?= form_close() ?>
@@ -15,19 +15,21 @@
 					<img <?= 'src="'.$post->image.'"' ?> alt="<?= $post->image ?>" />
 				</div>	
 				<div class="infos">
-					<div class="supp">
-						<?= form_open('curl/modifier') ?>
-							<?=  form_fieldset() ?>
-								<?= form_submit(array('class' => 'modifier', 'value' => 'modifier', 'name' => 'modifier', 'title' => 'permet de modifier le titre et la description du post')) ?>
-								<?= form_hidden(array('id' => $post->id)) ?>
-							<?= form_fieldset_close() ?>
-						<?= form_close() ?>
-						<?= form_open('curl/supprimer') ?>
-							<?=  form_fieldset() ?>
-								<?= form_submit(array('class' => 'supprimer', 'value' => 'x', 'name' => 'supprimer', 'title' => 'supprimer')) ?>
-								<?= form_hidden(array('id' => $post->id)) ?>
-							<?= form_fieldset_close() ?>
-						<?= form_close() ?>
+					<div class="supp icon-cog">
+						<div class="actionsContainer">
+							<?= form_open('curl/modifier') ?>
+								<?=  form_fieldset() ?>
+									<?= form_submit(array('class' => 'modifier', 'value' => 'modifier', 'name' => 'modifier', 'title' => 'permet de modifier le titre et la description du post')) ?>
+									<?= form_hidden(array('id' => $post->id)) ?>
+								<?= form_fieldset_close() ?>
+							<?= form_close() ?>
+							<?= form_open('curl/supprimer') ?>
+								<?=  form_fieldset() ?>
+									<?= form_submit(array('class' => 'supprimer', 'value' => 'supprimer', 'name' => 'supprimer', 'title' => 'supprimer')) ?>
+									<?= form_hidden(array('id' => $post->id)) ?>
+								<?= form_fieldset_close() ?>
+							<?= form_close() ?>
+						</div>
 					</div>
 					<h2><?= $post->titre ?></h2>
 					<span><a href="<?= $post->site ?>" title="voir le site <?= $post->site ?>"><?= $post->site ?></a></span>
@@ -37,6 +39,6 @@
 		</div>
 		<?php endforeach; ?>
 	<?php else: ?>
-		<p>vous n'avez encore enregistré aucuns liens, si vous venez de vous inscrire cela signifie que votre inscription s'est passé avec succès. Au cas contraire il serait dommage de laisser cette page vide&nbsp;!</p>
+		<p class="noPosts">vous n'avez encore enregistré aucuns liens, si vous venez de vous inscrire cela signifie que votre inscription s'est passé avec succès. Au cas contraire il serait dommage de laisser cette page vide&nbsp;!</p>
 	<?php endif; ?>
 </div>

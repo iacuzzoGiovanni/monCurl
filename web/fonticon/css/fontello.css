@@ -27,6 +27,7 @@
 /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
+.icon-cog:before { content: '\2699'; } /* '⚙' */
 .icon-vcard:before { content: '\e722'; } /* '' */
 .icon-login:before { content: '\e740'; } /* '' */
 .icon-logout:before { content: '\e741'; } /* '' */

@@ -8,6 +8,7 @@
 			$this->db->select('titre as titre, url as site, description as description, img as image, id as id');
 			$this->db->from('posts');
 			$this->db->where('user_id', $this->session->userdata['id']);
+			$this->db->order_by("date", "desc"); 
 			$query = $this->db->get();
 			return $query->result();
 		}

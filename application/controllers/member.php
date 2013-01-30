@@ -20,11 +20,11 @@
 		}
 
 		public function signIn(){
-			if($this->input->post('email1') === $this->input->post('email2')){
+			if($this->input->post('email1') != ""){
 				$email = $this->input->post('email1');
 			}
 
-			if($this->input->post('mdp1') === $this->input->post('mdp2')){
+			if($this->input->post('mdp1') === $this->input->post('mdp2') && $this->input->post('mdp1') != ""){
 				$mdp = $this->input->post('mdp1');
 			}	
 
@@ -33,8 +33,10 @@
 			if(empty($email) || empty($mdp)){
 				//rien
 			}else{
+				
 				$this->M_Member->inscrire(array('email' => $email, 'mdp' => $mdp));
 				$res = $this->M_Member->verifier(array('email' => $email, 'mdp' => $mdp));
+				
 				if($res['exist']){
 					$user = array(
 	                   'id'  => $res['data']->user_id,

@@ -20,7 +20,11 @@
 					<div class="choice">
 						<?= form_label('<img src="'.$image.'"alt="impossible d\'afficher l\'image"/>', 'i'.$key) ?>
 						<?php 
-							$data = array('id' => 'i'.$key, 'name' => 'imgChoice', 'value' => $image, 'class' => 'imgChoice');
+							if($key === 0){
+								$data = array('id' => 'i'.$key, 'name' => 'imgChoice', 'value' => $image, 'class' => 'imgChoice', 'checked' => 'checked');
+							}else{
+								$data = array('id' => 'i'.$key, 'name' => 'imgChoice', 'value' => $image, 'class' => 'imgChoice');
+							}
 							echo form_radio($data);
 						?>
 					</div>

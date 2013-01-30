@@ -47,16 +47,16 @@ class Curl extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 			$data = $this->input->post('text');
-			if(substr($data, 0, 7) == 'http://' | substr($data, 0, 3) == 'www'){
+			$curl = curl_init();
 
-				$curl = curl_init();
+			curl_setopt($curl, CURLOPT_HEADER, 0);
+			curl_setopt($curl, CURLOPT_URL, $data);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 
-				curl_setopt($curl, CURLOPT_HEADER, 0);
-				curl_setopt($curl, CURLOPT_URL, $data);
-				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-				
-				$pageContent = curl_exec($curl);
+			$pageContent = curl_exec($curl);
+			
+			if($pageContent){				
 
 				//Récuperation du html
 				$dom = new DOMDocument();
@@ -103,25 +103,19 @@ class Curl extends CI_Controller {
 				}
 
 				//ajout des donnée dans la variable contenant les info
+
+
 				$donnees['titre'] = $leTitre;
 				$donnees['site'] = $leSite;
 				$donnees['description'] = $laDescription;
 				$donnees['img'] = $img;
-
-			}else{
-
-				$donnees['titre'] = 'auteur';
-				$donnees['site'] = date("Y-m-d H:i:s");
-				$donnees['description'] = $data;
-				$donnees['img'] = 'http://localhost/monCurl/web/img/auteur.png';
-
+				
+				$dataLayout['titre'] = 'Choisis ton image';
+				$dataLayout['pageCourante'] = 'choix';
+				$dataLayout['vue'] = $this->load->view('choix', $donnees, TRUE);
+				$this->load->view('layout', $dataLayout);
 			}
 		} 
-
-		$dataLayout['titre'] = 'Choisis ton image';
-		$dataLayout['pageCourante'] = 'choix';
-		$dataLayout['vue'] = $this->load->view('choix', $donnees, TRUE);
-		$this->load->view('layout', $dataLayout);
 	}
 
 	public function send(){
