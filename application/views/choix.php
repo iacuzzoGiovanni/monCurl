@@ -38,19 +38,15 @@
 					?>
 				</div>
 			<? endif; ?>
-		<?= form_fieldset_close() ?>
-		<?= form_fieldset() ?>
 			<?php if(is_array($img)): ?>
 				<?php 
-					echo form_button(array('id' => 'prec', 'content' => 'précédente', 'name' => 'prec'));
-					echo form_button(array('id' => 'suiv', 'content' => 'suivante', 'name' => 'prec'));  
+					echo form_button(array('id' => 'prec', 'class' => 'icon-left-circle','content' => '<span>précédente</span>', 'name' => 'prec'));
+					echo form_button(array('id' => 'suiv', 'class' => 'icon-right-circle','content' => '<span>suivante</span>', 'name' => 'suiv'));  
 				?>
 			<? endif; ?>
 			<?= form_hidden(array('description' => $description)) ?>
 			<?= form_hidden(array('titre' => $titre)) ?>	
 			<?= form_hidden(array('site' => $site)) ?>
-		<?= form_fieldset_close() ?>
-		<?= form_fieldset() ?>
 			<?php 
 				echo form_submit(array('id' => 'envoyer', 'name' => 'envoyer', 'value' => 'envoyer'));  
 			?>

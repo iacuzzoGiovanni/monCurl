@@ -28,6 +28,8 @@
 }
 
 .icon-cog:before { content: '\2699'; } /* '⚙' */
+.icon-left-circle:before { content: '\e4a1'; } /* '' */
+.icon-right-circle:before { content: '\e4a2'; } /* '' */
 .icon-vcard:before { content: '\e722'; } /* '' */
 .icon-login:before { content: '\e740'; } /* '' */
 .icon-logout:before { content: '\e741'; } /* '' */

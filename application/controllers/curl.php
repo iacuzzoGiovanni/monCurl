@@ -69,7 +69,12 @@ class Curl extends CI_Controller {
 				curl_close($curl);
 
 				//recuperation du site
-				$leSite = $data;
+				if(preg_match('#^(http|https):\/\/#i', $data)){
+					$leSite = $data;
+				}else{
+					$leSite = 'http://'.$data;
+				}
+				
 
 				//récuperation du title
 				$leTitre = $titre->item(0);
@@ -92,14 +97,17 @@ class Curl extends CI_Controller {
 				}
 
 				//recuperation des ou de l'image
-				for ($i=0; $i < $images->length ; $i++) { 
-					 	$mesImgs = $images->item($i);
-					 	$img[$i] = $mesImgs->getAttribute("src");
-					 	$img[$i] = $this->rel2abs($leSite, $img[$i]);
-					}
+				for ($i=0; $i < $images->length ; $i++){ 
+				 	$mesImgs = $images->item($i);
+				 	$img[$i] = $mesImgs->getAttribute("src");
+				 	$img[$i] = $this->rel2abs($leSite, $img[$i]);
+				 	if(!@fopen($img[$i], 'r')){
+				 		$img[$i] = base_url().'web/img/noImg.png';
+				 	}
+				}
 
 				if(empty($img)){
-					$img = 'http://localhost/monCurl/web/img/noImg.png';
+					$img = base_url().'web/img/noImg.png';
 				}
 
 				//ajout des donnée dans la variable contenant les info
@@ -196,8 +204,6 @@ class Curl extends CI_Controller {
 	    }*/
 	        
 	    return $pageURL.$link;
-
-
 	}
 
 	public function disconnect(){

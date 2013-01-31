@@ -1,6 +1,7 @@
 ﻿<div id="form">
 	<?= form_open('curl/choix', array("class" => "linkSearch")) ?>
 		<?=  form_fieldset() ?>
+			<img width="32" height="32" alt="ajaxLoader" src="<?= base_url() ?>/web/img/loading.gif" />
 			<?= form_textarea(array('id' => 'text', 'name' => 'text', 'placeholder' => 'placer votre lien ici :-)')) ?>
 			<?= form_submit(array('id' => 'partager', 'value' => 'partager', 'name' => 'partager')) ?>
 		<?= form_fieldset_close() ?>

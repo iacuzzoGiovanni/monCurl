@@ -12,6 +12,18 @@
 		$next_image.children('.imgChoice').attr('checked','checked');
 	};
 
+	var reculer = function(e){
+		var $prev_image = $('#choice .choice:visible').hide().prev('.choice');
+		
+		if($prev_image.length < 1){
+			$prev_image = $('#choice .choice').last();
+		}
+
+		$prev_image.show();
+
+		$prev_image.children('.imgChoice').attr('checked','checked');
+	};
+
 	var derouleSupp = function(e){
 		e.preventDefault();
 		
@@ -143,6 +155,7 @@
 
 	var checkUrl = function(e){
 		e.preventDefault();
+		$("#form img").css('display', 'inline');
 		var $this = $(this);
 		$.ajax(
 			{
@@ -158,6 +171,7 @@
 						$this.parents("fieldset").find(".urlKo").remove();
 						$this.parents("fieldset").append('<span class="urlKo">L\'url que vous avez entrée n\'est pas valide</span>');
 					}
+					$("#form img").css('display', 'none');
 				}
 			}
 		)
@@ -170,6 +184,7 @@
 		$("#choice .choice").first().show();
 		$(".imgChoice").parents(".posts").first().attr('checked', 'checked');
 		$("#suiv").on("click", avancer);
+		$("#prec").on("click", reculer);
 		$(".post").delegate(".supprimer", "click", derouleSupp);
 		$(".post").delegate(".modifier", "click", modifier);
 		$(".post").delegate(".saveChange", "click", enregistrerChange);

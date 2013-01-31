@@ -302,13 +302,14 @@ form.infos textarea{
 }
 
 .lesImages{
-    float: left;
     margin-bottom: 1em;
     margin-right: 1em;
 }
 
 #choice{
     overflow: hidden;
+    position: relative;
+    text-align: center;
 }
 
 .choice{
@@ -526,9 +527,35 @@ span.errors{
     width: 50%;
 }
 
-.modifier, .supprimer, .saveChange, #partager, #suiv, #prec, #choix #envoyer{
+.modifier, .supprimer, .saveChange, #partager, #choix #envoyer{
     width: 100%;
     padding: 0em 1em;
+}
+
+#suiv span, #prec span{
+    display: none;
+}
+
+#suiv, #prec{
+    font-size: 3em;
+    width: auto;
+    position: absolute;
+    margin: 0;
+}
+
+#suiv{
+    left: 12em;
+    top: 3em;
+}
+
+#prec{
+    left: 6em;
+    top: 4em;
+}
+
+#envoyer{
+    width: auto !important;
+    margin: 0 auto;
 }
 
 .saveChange, #partager, #suiv{
@@ -568,9 +595,10 @@ span.errors{
 }
 
 #partager{
-    width: 20%;
+    width: 15%;
     margin-left: 2%;
     margin-top: 0 !important;
+    display: inline-block;
 }
 
 #form{
@@ -579,6 +607,11 @@ span.errors{
     position: relative;
     top: -1.45em;
     border-bottom: 1px solid #DADADA;
+}
+
+#form img{
+    margin-left: 1%;
+    display: none;
 }
 
 .post{

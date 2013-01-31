@@ -17,6 +17,32 @@
     },
     {
       "search": [
+        "arrow",
+        "left"
+      ],
+      "code": 58529,
+      "from": 58529,
+      "uid": "7e092c82e9a758b6e95297007969aac1",
+      "css": "left-circle",
+      "orig_css": "left-circle",
+      "orig_code": 58529,
+      "src": "websymbols"
+    },
+    {
+      "search": [
+        "arrow",
+        "right"
+      ],
+      "code": 58530,
+      "from": 58530,
+      "uid": "d30928620bda0d5eaa85d3b65bf19963",
+      "css": "right-circle",
+      "orig_css": "right-circle",
+      "orig_code": 58530,
+      "src": "websymbols"
+    },
+    {
+      "search": [
         "contact",
         "card",
         "vcard"
