@@ -787,6 +787,36 @@ body{
     .choicePicture{
         padding: 1em;
     }
+
+    .membersAction > div > div{
+        border: none !important;
+        padding: 0 !important;
+        float: none;
+        width: 100%;
+    }
+
+    #partager{
+        margin: 0;
+    }
+
+    .linkSearch textarea{
+        margin-bottom: 1em;
+        width: 90%;
+    }
+
+    .icon-logout{
+        right: 0.5em;
+    }
+
+    .actionsContainer{
+        display: block;
+        position: inherit;
+    }
+
+    .supp{
+        height: auto;
+        margin-bottom: 0.5em;
+    }
 }/*pour ecran en deca de 959px*/
 
 @media only screen and (min-width: 768px) and (max-width: 959px){
